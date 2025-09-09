@@ -1,24 +1,28 @@
+from importlib.metadata import metadata
 from netbox.plugins import PluginConfig
 
-__title__ = "netbox-mikrotik"
-__description__ = "Sync IP-Addresses to Mikrotik Address Lists and more."
-__version__ = "0.1.0.dev1"
-__author__ = "Julius Koenig"
-__author_email__ = "info@bastelquartier.de"
-__license__ = "GPL-3.0"
-__license_url__ = "https://www.gnu.org/licenses/gpl-3.0.md"
-__terms_of_service__ = "https://bastelquartier.de/terms-of-service"
+meta = metadata(__name__)
+
+package_version = meta.get("Version").split(".")
+version = ".".join(package_version[:3])
+release_track = ""
+if len(package_version) == 4:
+    if package_version[3].startswith("dev"):
+        release_track = "dev"
+    elif package_version[3].startswith("b"):
+        release_track = "beta"
 
 
 class NetBoxMikrotikConfig(PluginConfig):
-    name = __title__
+    name = __name__
     verbose_name = "NetBox Mikrotik"
-    description = __description__
-    release_track = "dev"
-    version = __version__
+    description = meta.get("description")
+    version = version
+    release_track = release_track
     base_url = "netbox-mikrotik"
     min_version = "4.3.0"
-    author = __author__
-    author_email = __author_email__
+    author = meta.get("author")
+    author_email = meta.get("author_email")
+
 
 config = NetBoxMikrotikConfig
