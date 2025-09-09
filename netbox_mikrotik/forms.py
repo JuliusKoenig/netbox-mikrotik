@@ -8,6 +8,6 @@ class MikrotikDeviceForm(NetBoxModelForm):
         model = MikrotikDevice
         fields = [
             "device",
-            "foo",
-            "bar"
+            # "foo",
+            # "bar"
         ]

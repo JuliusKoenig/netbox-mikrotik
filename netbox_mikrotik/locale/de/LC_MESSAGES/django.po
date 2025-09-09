@@ -1,0 +1,82 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-09-09 14:38+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+#: models.py:9 models.py:23 models.py:28
+#: templates/netbox_mikrotik/mikrotikdevice.html:125
+#: templates/netbox_mikrotik/mikrotikdevice.html:128
+msgid "Device"
+msgstr "Gerät"
+
+#: models.py:24 navigation.py:7
+msgid "Devices"
+msgstr "Geräte"
+
+#: navigation.py:9
+msgid "Add"
+msgstr "Hinzufügen"
+
+#: navigation.py:13
+msgid "Import"
+msgstr "Importieren"
+
+#: navigation.py:18
+msgid "Configuration"
+msgstr "Konfiguration"
+
+#: tables.py:12
+msgid "Name"
+msgstr "Name"
+
+#: tables.py:15
+msgid "IP Address"
+msgstr "IP-Adresse"
+
+#: tables.py:16
+msgid "Address List Synchronization"
+msgstr "Adresslisten-Synchronisierung"
+
+#: tables.py:17
+msgid "DNS Synchronization"
+msgstr "DNS-Synchronisierung"
+
+#: tables.py:18
+msgid "DHCP Synchronization"
+msgstr "DHCP-Synchronisierung"
+
+#: tables.py:19
+msgid "Last Run"
+msgstr "Letzter Lauf"
+
+#: templates/netbox_mikrotik/mikrotikdevice.html:58
+#: templates/netbox_mikrotik/object.html:58
+msgid "Created"
+msgstr "Erstellt"
+
+#: templates/netbox_mikrotik/mikrotikdevice.html:61
+#: templates/netbox_mikrotik/object.html:61
+msgid "Updated"
+msgstr "Aktualisiert"
+
+#: templates/netbox_mikrotik/mikrotikdevice.html:141
+msgid "Description"
+msgstr "Beschreibung"
+
+#: templates/netbox_mikrotik/mikrotikdevice.html:147
+msgid "Tenant"
+msgstr "Mandant"

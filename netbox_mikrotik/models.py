@@ -1,18 +1,22 @@
-from django.db import models
+from django.db.models import CharField, OneToOneField, BooleanField, DateTimeField, CASCADE
 from django.utils.translation import gettext_lazy as _
 from ipam.models import IPAddress
 from netbox.models import NetBoxModel
 
 
 class MikrotikDevice(NetBoxModel):
-    device = models.OneToOneField(
+    device = OneToOneField(
         verbose_name=_("Device"),
         to="dcim.Device",
-        on_delete=models.PROTECT,
+        on_delete=CASCADE,
         related_name="netbox_mikrotik_mikrotik_device",
     )
-    foo = models.CharField(max_length=50)
-    bar = models.CharField(max_length=50)
+    username = CharField(max_length=64, null=False, blank=False)
+    password = CharField(max_length=254, null=False, blank=False)
+    address_list_sync = BooleanField(default=False)
+    dns_sync = BooleanField(default=False)
+    dhcp_sync = BooleanField(default=False)
+    last_run = DateTimeField(null=True, blank=True)
 
     class Meta:
         db_table = "netbox_mikrotik_device"
@@ -21,10 +25,10 @@ class MikrotikDevice(NetBoxModel):
         ordering = ["device__name"]
 
     def __str__(self):
-        return f'{self.foo} {self.bar}'
+        return f"Mikrotik {_('Device')} - {self.device.name}"
 
     @property
-    def str(self) -> str:
+    def name(self) -> str:
         return str(self)
 
     @property
