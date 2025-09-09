@@ -128,20 +128,6 @@ Context:
                         <th scope="row">{% trans "Device" %}</th>
                         <td>{{ object.device|linkify }}</td>
                     </tr>
-                    <tr>
-                        <th scope="row">{% trans "Foo" %}</th>
-                        <td>{{ object.foo }}</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">{% trans "Bar" %}</th>
-                        <td>{{ object.bar }}</td>
-                    </tr>
-                    {% if object.description %}
-                        <tr>
-                            <th scope="row">{% trans "Description" %}</th>
-                            <td style="word-break:break-all;">{{ object.description }}</td>
-                        </tr>
-                    {% endif %} {# ToDo #}
                     {% if object.tenant %}
                         <tr>
                             <th scope="row">{% trans "Tenant" %}</th>
@@ -152,13 +138,40 @@ Context:
                                 {{ object.tenant|linkify|placeholder }}
                             </td>
                         </tr>
-                    {% endif %} {# ToDo #}
+                    {% endif %}
+                    {% if object.ip_address %}
+                        <tr>
+                            <th scope="row">{% trans "IP Address" %}</th>
+                            <td>
+                                {{ object.ip_address|linkify }}
+                            </td>
+                        </tr>
+                    {% endif %}
+                    <tr>
+                        <th scope="row">{% trans "Address List Synchronization" %}</th>
+                        <td>{% checkmark object.address_list_sync %}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">{% trans "DNS Synchronization" %}</th>
+                        <td>{% checkmark object.dns_sync %}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">{% trans "DHCP Synchronization" %}</th>
+                        <td>{% checkmark object.dhcp_sync %}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">{% trans "Last Run" %}</th>
+                        <td>{{ object.last_run }}</td>
+                    </tr>
                 </table>
             </div>
             {% include 'inc/panels/custom_fields.html' %}
         </div>
         <div class="col col-md-6">
-            {% include 'inc/panels/tags.html' %}
+            <div class="card">
+                <h5 class="card-header">{% trans "Preview" %}</h5>
+                <h5>ToDo</h5>
+            </div>
         </div>
     </div>
 {% endblock %}

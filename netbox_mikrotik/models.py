@@ -1,5 +1,6 @@
 from django.db.models import CharField, OneToOneField, BooleanField, DateTimeField, CASCADE
 from django.utils.translation import gettext_lazy as _
+from tenancy.models import Tenant
 from ipam.models import IPAddress
 from netbox.models import NetBoxModel
 
@@ -25,11 +26,15 @@ class MikrotikDevice(NetBoxModel):
         ordering = ["device__name"]
 
     def __str__(self):
-        return f"Mikrotik {_('Device')} - {self.device.name}"
+        return self.device.name
 
     @property
     def name(self) -> str:
         return str(self)
+
+    @property
+    def tenant(self) -> Tenant | None:
+        return self.device.tenant
 
     @property
     def ip_address(self) -> IPAddress | None:

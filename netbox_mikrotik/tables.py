@@ -7,12 +7,9 @@ from netbox_mikrotik.models import MikrotikDevice
 
 class MikrotikDeviceTable(NetBoxTable):
     pk = ToggleColumn()
-    # noinspection PyTypeChecker
-    name = Column(linkify=True,
-                  verbose_name=_("Name"))
-    # noinspection PyTypeChecker
-    ip_address = Column(linkify=True,
-                        verbose_name=_("IP Address"))
+    name = LinkColumn(verbose_name=_("Name"))
+    tenant = LinkColumn(verbose_name=_("Tenant"))
+    ip_address = LinkColumn(verbose_name=_("IP Address"))
     address_list_sync = BooleanColumn(verbose_name=_("Address List Synchronization"))
     dns_sync = BooleanColumn(verbose_name=_("DNS Synchronization"))
     dhcp_sync = BooleanColumn(verbose_name=_("DHCP Synchronization"))
@@ -23,6 +20,7 @@ class MikrotikDeviceTable(NetBoxTable):
         fields = (
             "pk",
             "name",
+            "tenant",
             "ip_address",
             "address_list_sync",
             "dns_sync",
