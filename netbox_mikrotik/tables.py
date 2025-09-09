@@ -17,7 +17,6 @@ class MikrotikDeviceTable(NetBoxTable):
     dns_sync = BooleanColumn(verbose_name=_("DNS Synchronization"))
     dhcp_sync = BooleanColumn(verbose_name=_("DHCP Synchronization"))
     last_run = DateTimeColumn(verbose_name=_("Last Run"))
-    actions = ActionsColumn(actions=())
 
     class Meta(NetBoxTable.Meta):
         model = MikrotikDevice

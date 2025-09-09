@@ -9,12 +9,25 @@ class MikrotikDeviceSerializer(NetBoxModelSerializer):
     class Meta:
         model = MikrotikDevice
         fields = ["id",
-                  "foo",
-                  "bar",
-                  "device_id",
                   "created",
-                  "last_updated"]
-        brief_fields = ["id",
-                        "foo",
-                        "bar",
-                        "device_id"]
+                  "last_updated",
+                  "custom_field_data",
+                  "name",
+                  "ip_address",
+                  "username",
+                  "password",
+                  "address_list_sync",
+                  "dns_sync",
+                  "dhcp_sync",
+                  "last_run",
+                  "device_id"]
+        brief_fields = (
+            "id",
+            "name",
+            "ip_address"
+        )
+
+    name = serializers.CharField(read_only=True)
+    ip_address = serializers.IPAddressField(read_only=True)
+    password = serializers.CharField(write_only=True)
+    last_run = serializers.DateTimeField(read_only=True)
