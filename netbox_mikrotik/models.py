@@ -1,4 +1,4 @@
-from django.db.models import CharField, OneToOneField, BooleanField, DateTimeField, CASCADE
+from django.db.models import CharField, OneToOneField, BooleanField, DateTimeField, CASCADE, ManyToManyField
 from django.utils.translation import gettext_lazy as _
 from tenancy.models import Tenant
 from ipam.models import IPAddress
@@ -18,6 +18,12 @@ class MikrotikDevice(NetBoxModel):
     dns_sync = BooleanField(default=False)
     dhcp_sync = BooleanField(default=False)
     last_run = DateTimeField(null=True, blank=True)
+    sync_groups = ManyToManyField(
+        verbose_name=_("Synchronisation Groups"),
+        to="netbox_mikrotik.SyncGroup",
+        related_name="mikrotik_devices",
+        blank=True
+    )
 
     class Meta:
         db_table = "netbox_mikrotik_device"
@@ -46,3 +52,21 @@ class MikrotikDevice(NetBoxModel):
             for ip in interface.ip_addresses.all():
                 return ip
         return None
+
+class SyncGroup(NetBoxModel):
+    name = CharField(max_length=64, null=False, blank=False)
+    tenants = ManyToManyField(
+        verbose_name=_("Tenants"),
+        to="tenancy.tenant",
+        related_name="netbox_mikrotik_sync_groups",
+        blank=True
+    )
+
+    class Meta:
+        db_table = "netbox_mikrotik_syncgroup"
+        verbose_name = _("Synchronisation Group")
+        verbose_name_plural = _("Synchronisation Groups")
+        ordering = ["name"]
+
+    def __str__(self):
+        return self.name

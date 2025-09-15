@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from netbox.api.serializers import NetBoxModelSerializer
-from netbox_mikrotik.models import MikrotikDevice
+from netbox_mikrotik.models import MikrotikDevice, SyncGroup
 
 
 class MikrotikDeviceSerializer(NetBoxModelSerializer):
@@ -20,7 +20,7 @@ class MikrotikDeviceSerializer(NetBoxModelSerializer):
                   "dns_sync",
                   "dhcp_sync",
                   "last_run",
-                  "device_id"]
+                  "device"]
         brief_fields = (
             "id",
             "name",
@@ -31,3 +31,21 @@ class MikrotikDeviceSerializer(NetBoxModelSerializer):
     ip_address = serializers.IPAddressField(read_only=True)
     password = serializers.CharField(write_only=True)
     last_run = serializers.DateTimeField(read_only=True)
+
+class SyncGroupSerializer(NetBoxModelSerializer):
+    url = serializers.HyperlinkedIdentityField(view_name="plugins-api:netbox_mikrotik-api:syncgroup-detail")
+
+    class Meta:
+        model = SyncGroup
+        fields = ["id",
+                  "created",
+                  "last_updated",
+                  "custom_field_data",
+                  "name",
+                  "tenants"]
+        brief_fields = (
+            "id",
+            "name"
+        )
+
+    name = serializers.CharField()

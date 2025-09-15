@@ -8,4 +8,8 @@ app_name = "netbox_mikrotik"
 urlpatterns = [path("devices/",
                     include(get_model_urls(app_name, "mikrotikdevice", detail=False))),
                path("devices/<int:pk>/",
-                    include(get_model_urls(app_name, "mikrotikdevice")))]
+                    include(get_model_urls(app_name, "mikrotikdevice"))),
+               path("sync-group/",
+                    include(get_model_urls(app_name, "syncgroup", detail=False))),
+               path("sync-group/<int:pk>/",
+                    include(get_model_urls(app_name, "syncgroup")))]

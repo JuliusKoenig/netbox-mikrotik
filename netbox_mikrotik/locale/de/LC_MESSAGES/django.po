@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-09 14:38+0200\n"
+"POT-Creation-Date: 2025-09-15 15:26+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,49 +17,65 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-#: models.py:9 models.py:23 models.py:28
-#: templates/netbox_mikrotik/mikrotikdevice.html:125
+
+#: models.py:10 models.py:30 templates/netbox_mikrotik/mikrotikdevice.html:125
 #: templates/netbox_mikrotik/mikrotikdevice.html:128
 msgid "Device"
 msgstr "Gerät"
 
-#: models.py:24 navigation.py:7
+#: models.py:22 models.py:68 navigation.py:18
+msgid "Synchronisation Groups"
+msgstr "Synchronisierungs-Gruppen"
+
+#: models.py:31 navigation.py:7
 msgid "Devices"
 msgstr "Geräte"
 
-#: navigation.py:9
+#: models.py:59
+msgid "Tenants"
+msgstr "Mandanten"
+
+#: models.py:67
+msgid "Synchronisation Group"
+msgstr "Synchronisierungsgruppe"
+
+#: navigation.py:9 navigation.py:20
 msgid "Add"
 msgstr "Hinzufügen"
 
-#: navigation.py:13
+#: navigation.py:13 navigation.py:24
 msgid "Import"
 msgstr "Importieren"
 
-#: navigation.py:18
+#: navigation.py:29
 msgid "Configuration"
 msgstr "Konfiguration"
 
-#: tables.py:12
+#: tables.py:10 tables.py:44
 msgid "Name"
 msgstr "Name"
 
-#: tables.py:15
+#: tables.py:11 templates/netbox_mikrotik/mikrotikdevice.html:133
+msgid "Tenant"
+msgstr "Mandant"
+
+#: tables.py:12 templates/netbox_mikrotik/mikrotikdevice.html:144
 msgid "IP Address"
 msgstr "IP-Adresse"
 
-#: tables.py:16
+#: tables.py:13 templates/netbox_mikrotik/mikrotikdevice.html:151
 msgid "Address List Synchronization"
 msgstr "Adresslisten-Synchronisierung"
 
-#: tables.py:17
+#: tables.py:14 templates/netbox_mikrotik/mikrotikdevice.html:155
 msgid "DNS Synchronization"
 msgstr "DNS-Synchronisierung"
 
-#: tables.py:18
+#: tables.py:15 templates/netbox_mikrotik/mikrotikdevice.html:159
 msgid "DHCP Synchronization"
 msgstr "DHCP-Synchronisierung"
 
-#: tables.py:19
+#: tables.py:16 templates/netbox_mikrotik/mikrotikdevice.html:163
 msgid "Last Run"
 msgstr "Letzter Lauf"
 
@@ -73,10 +89,6 @@ msgstr "Erstellt"
 msgid "Updated"
 msgstr "Aktualisiert"
 
-#: templates/netbox_mikrotik/mikrotikdevice.html:141
-msgid "Description"
-msgstr "Beschreibung"
-
-#: templates/netbox_mikrotik/mikrotikdevice.html:147
-msgid "Tenant"
-msgstr "Mandant"
+#: templates/netbox_mikrotik/mikrotikdevice.html:172
+msgid "Preview"
+msgstr "Vorschau"
