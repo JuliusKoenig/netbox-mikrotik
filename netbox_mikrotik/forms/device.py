@@ -1,7 +1,9 @@
 from django.forms import PasswordInput
 from netbox.forms import NetBoxModelForm
 
-from netbox_mikrotik.models import MikrotikDevice, SyncGroup
+from netbox_mikrotik.models import MikrotikDevice
+
+__all__ = ("MikrotikDeviceForm",)
 
 
 class MikrotikDeviceForm(NetBoxModelForm):
@@ -13,17 +15,8 @@ class MikrotikDeviceForm(NetBoxModelForm):
             "password",
             "address_list_sync",
             "dns_sync",
-            "dhcp_sync",
-            "sync_groups"
+            "dhcp_sync"
         ]
         widgets = {
-            'password': PasswordInput(render_value=True),
+            "password": PasswordInput(render_value=True),
         }
-
-class SyncGroupForm(NetBoxModelForm):
-    class Meta:
-        model = SyncGroup
-        fields = [
-            "name",
-            "tenants"
-        ]

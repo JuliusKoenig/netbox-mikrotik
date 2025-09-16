@@ -2,8 +2,9 @@ from django_tables2 import BooleanColumn, DateTimeColumn, LinkColumn
 from django.utils.translation import gettext_lazy as _
 from netbox.tables import NetBoxTable, ToggleColumn
 
-from netbox_mikrotik.models import MikrotikDevice, SyncGroup
+from netbox_mikrotik.models import MikrotikDevice
 
+__all__ = ("MikrotikDeviceTable",)
 
 class MikrotikDeviceTable(NetBoxTable):
     pk = ToggleColumn()
@@ -36,19 +37,4 @@ class MikrotikDeviceTable(NetBoxTable):
             "dhcp_sync",
             "last_run",
             "actions"
-        )
-
-
-class SyncGroupTable(NetBoxTable):
-    pk = ToggleColumn()
-    name = LinkColumn(verbose_name=_("Name"))
-
-    class Meta(NetBoxTable.Meta):
-        model = SyncGroup
-        fields = (
-            "pk",
-            "name"
-        )
-        default_columns = (
-            "name"
         )
