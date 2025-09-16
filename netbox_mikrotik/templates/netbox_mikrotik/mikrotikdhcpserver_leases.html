@@ -1,0 +1,30 @@
+{% extends 'generic/object.html' %}
+{% load buttons %}
+{% load custom_links %}
+{% load helpers %}
+{% load i18n %}
+{% load plugins %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <h5 class="card-header">
+                {% trans "DHCP Leases" %}
+                <div class="card-actions">
+                    {% if perms.netbox_mikrotik.add_mikrotikdhcplease %}
+                        <a href="{% url 'plugins:netbox_mikrotik:mikrotikdhcplease_add' %}?mikrotik_dhcp_server={{ object.pk }}&return_url={{ object.get_absolute_url }}" class="btn btn-ghost-primary btn-sm">
+                          <span class="mdi mdi-plus-thick" aria-hidden="true"></span> {% trans "Create DHCP Lease" %}
+                        </a>
+                    {% endif %}
+                </div>
+            </h5>
+            {% htmx_table "plugins:netbox_mikrotik:mikrotikdhcplease_list" id=object.pk %}
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card"></div>
+    </div>
+</div>
+
+{% endblock %}

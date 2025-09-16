@@ -1,5 +1,6 @@
 from django.db.models import CharField, ForeignKey, CASCADE
 from django.utils.translation import gettext_lazy as _
+from django.core.exceptions import ValidationError
 from netbox.models import NetBoxModel
 
 __all__ = ("MikrotikDhcpServer", "MikrotikDhcpLease")
@@ -24,6 +25,15 @@ class MikrotikDhcpServer(NetBoxModel):
 
     def __str__(self):
         return self.name
+
+    def validate_unique(self, *args, **kwargs):
+        super().validate_unique(*args, **kwargs)
+        if self.__class__.objects.filter(mikrotik_device=self.mikrotik_device,
+                                         name=self.name).exists():
+            raise ValidationError(
+                message=f"{self.__class__.__name__} with this (mikrotik_device, name) already exists.",
+                code="unique_together"
+            )
 
 
 class MikrotikDhcpLease(NetBoxModel):

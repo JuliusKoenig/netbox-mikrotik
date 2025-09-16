@@ -1,9 +1,11 @@
+from django.utils.translation import gettext_lazy as _
 from netbox.views.generic import ObjectListView, ObjectView, ObjectEditView, ObjectDeleteView, BulkImportView, \
     BulkEditView, BulkDeleteView
-from utilities.views import register_model_view
+from utilities.views import register_model_view, ViewTab
 
 from netbox_mikrotik.models import MikrotikDhcpServer, MikrotikDhcpLease
 from netbox_mikrotik.tables import MikrotikDhcpServerTable, MikrotikDhcpLeaseTable
+from netbox_mikrotik.filtersets import MikrotikDhcpServerFilterSet, MikrotikDhcpLeaseFilterSet
 from netbox_mikrotik.forms import MikrotikDhcpServerForm, MikrotikDhcpLeaseForm
 
 __all__ = ("MikrotikDhcpServerListView",
@@ -25,7 +27,7 @@ __all__ = ("MikrotikDhcpServerListView",
 @register_model_view(MikrotikDhcpServer, "list", path="", detail=False)
 class MikrotikDhcpServerListView(ObjectListView):
     queryset = MikrotikDhcpServer.objects.all()
-    # filterset = filters.ConfiguredDhcpServerFilterSet ' ToDo
+    filterset = MikrotikDhcpServerFilterSet
     # filterset_form = forms.ConfiguredDhcpServerForm ' ToDo
     table = MikrotikDhcpServerTable
 
@@ -69,10 +71,20 @@ class MikrotikDhcpServerBulkDeleteView(BulkDeleteView):
     table = MikrotikDhcpServerTable
 
 
+@register_model_view(MikrotikDhcpServer, name="leases")
+class DeviceMikrotikView(ObjectView):
+    queryset = MikrotikDhcpServer.objects.all()
+    template_name = "netbox_mikrotik/mikrotikdhcpserver_leases.html"
+    tab = ViewTab(
+        label=_("DHCP Leases"),
+        hide_if_empty=True,
+    )
+
+
 @register_model_view(MikrotikDhcpLease, "list", path="", detail=False)
 class MikrotikDhcpLeaseListView(ObjectListView):
     queryset = MikrotikDhcpLease.objects.all()
-    # filterset = filters.ConfiguredDhcpLeaseFilterSet ' ToDo
+    filterset = MikrotikDhcpLeaseFilterSet
     # filterset_form = forms.ConfiguredDhcpLeaseForm ' ToDo
     table = MikrotikDhcpLeaseTable
 

@@ -4,6 +4,7 @@ from utilities.views import register_model_view
 
 from netbox_mikrotik.models import MikrotikDevice
 from netbox_mikrotik.tables import MikrotikDeviceTable
+from netbox_mikrotik.filtersets import MikrotikDeviceFilterSet
 from netbox_mikrotik.forms import MikrotikDeviceForm
 
 __all__ = ("MikrotikDeviceListView",
@@ -18,8 +19,8 @@ __all__ = ("MikrotikDeviceListView",
 @register_model_view(MikrotikDevice, "list", path="", detail=False)
 class MikrotikDeviceListView(ObjectListView):
     queryset = MikrotikDevice.objects.all()
-    # filterset = filters.ConfiguredDeviceFilterSet ' ToDo
-    # filterset_form = forms.ConfiguredDeviceForm ' ToDo
+    filterset = MikrotikDeviceFilterSet
+    # filterset_form = MikrotikDeviceForm ' ToDo
     table = MikrotikDeviceTable
 
 
